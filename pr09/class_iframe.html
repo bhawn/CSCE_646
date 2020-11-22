@@ -94,7 +94,7 @@
         </figure>
         <div class=emscripten id=status>Downloading...</div>
         <div class=emscripten><progress hidden id=progress max=100 value=0></progress></div><canvas class=emscripten id=canvas oncontextmenu=event.preventDefault() tabindex=-1></canvas>
-        <div class=emscripten>
+        <div class=emscripten style="width: 0; height: 0;">
             <script>
                 function handleFile(e) { const n = e.files[0]; if (!(n instanceof Blob)) return; const o = new FileReader;
                     o.onloadend = e => { const n = new Uint8Array(e.target.result),
