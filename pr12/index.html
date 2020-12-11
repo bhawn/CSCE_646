@@ -3625,7 +3625,7 @@
         }
 
         #_default_ .default-title:after {
-            content: " — "
+            content: "Â Â—Â "
         }
 
         #_default_ .default-title,
@@ -5425,9 +5425,9 @@
             
             
             var keepGoing = true;
+	    var cnv = document.createElement('canvas');
             function videoFrameGrabber()
             {
-                cnv = document.createElement('canvas');
                 cnv.width = video.videoWidth;
                 cnv.height = video.videoHeight;
                 ctx = cnv.getContext('2d');
@@ -5447,11 +5447,23 @@
                 }
             }
             function start_videoFrameGrabber() {
+                if(navigator.mediaDevices.getUserMedia) {
+                    navigator.mediaDevices.getUserMedia({ video: true })
+                        .then(function (stream) {
+                            video.srcObject = stream;
+                        })
+                        .catch(function (err0r) {
+                            console.log("Webcam start error!");
+                        });
+                }
                 keepGoing = true;
                 videoFrameGrabber();
             }
             function stop_videoFrameGrabber() {
                 keepGoing = false;
+                const mediaStream = video.srcObject;
+                const tracks = mediaStream.getTracks();
+                tracks[0].stop();
             }
             
         </script>
