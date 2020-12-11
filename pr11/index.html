@@ -5418,18 +5418,7 @@
             
             var video = document.createElement('video');
             video.autoplay = true;
-            
-            // start webcam
-            if(navigator.mediaDevices.getUserMedia) {
-              navigator.mediaDevices.getUserMedia({ video: true })
-                .then(function (stream) {
-                  video.srcObject = stream;
-                })
-                .catch(function (err0r) {
-                  console.log("Something went wrong!");
-                });
-            }
-            
+
             
             var keepGoing = true;
 	    var cnv = document.createElement('canvas');
